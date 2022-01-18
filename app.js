@@ -7,16 +7,11 @@ const request = require("request");
 
 const app = express();
 // const PORT = 3000;  <<-------- USE port 3000 for local testing
-const PORT = process.env.PORT; //  <<-------- USE this port for hosting on heroku
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
-
-app.listen(PORT, (req, res) => {
-  console.log(`Server is UP⬆️ on port: ${PORT}`);
-});
 
 // let datas = "";
 
@@ -42,4 +37,8 @@ app.get("/", (req, res) => {
       authorName: datas.author,
     });
   });
+});
+
+app.listen(process.env.PORT, (req, res) => {
+  console.log(`Server is UP⬆️`);
 });
